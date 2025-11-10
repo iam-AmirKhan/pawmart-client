@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Banner from "./Banner";
 import RecentLists from "./RecentLists";
 import ExtraOne from "./ExtraOne";
+import ExtraTwo from "./ExtraTwo";
 
 const Home = () => {
 
@@ -42,6 +43,7 @@ const Home = () => {
      
 <RecentLists></RecentLists>
 <ExtraOne></ExtraOne>
+<ExtraTwo></ExtraTwo>
 
     </div>
 
