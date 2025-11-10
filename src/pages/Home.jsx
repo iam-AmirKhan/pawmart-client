@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Banner from "./Banner";
+import { useLoaderData } from "react-router-dom";
 
 const Home = () => {
 
@@ -9,6 +10,8 @@ const Home = () => {
     { name: "Accessories", icon: "🧸", color: "bg-blue-100" },
     { name: "Care Products", icon: "💊", color: "bg-pink-100" },
   ];
+  
+ const { recentListings } = useLoaderData();
 
   return (
     <div className="max-w-7xl mx-auto px-4">
@@ -17,6 +20,7 @@ const Home = () => {
 
 
       {/* ========== Category Section ========== */}
+      
       <section className="mt-16">
         <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
           Explore by Category
@@ -36,7 +40,11 @@ const Home = () => {
       </section>
      
 
+
+
     </div>
+
+    
   );
 };
 
