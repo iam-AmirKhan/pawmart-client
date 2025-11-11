@@ -4,6 +4,8 @@ import Home from "../pages/Home";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import AllData from "../pages/AllData";
+import { path } from "framer-motion/client";
+import DetailsPage from "../pages/DetailsPage";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +24,6 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
-        
       },
       {
         path: "/login",
@@ -37,6 +38,16 @@ const router = createBrowserRouter([
           return { listings: data };
         },
       },
+      {
+        path: "/listing/:id",
+        element: <DetailsPage></DetailsPage>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/listings/${params.id}`),
+      },
+
+      {},
+
+      {},
     ],
   },
 ]);
