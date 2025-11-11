@@ -3,6 +3,7 @@ import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import AllData from "../pages/AllData";
 
 const router = createBrowserRouter([
   {
@@ -20,13 +21,21 @@ const router = createBrowserRouter([
       },
       {
         path: "/register",
-        element:<Register></Register>
+        element: <Register></Register>,
         
       },
       {
         path: "/login",
-        element:<Login></Login>
-        
+        element: <Login></Login>,
+      },
+      {
+        path: "/pets-supplies",
+        element: <AllData></AllData>,
+        loader: async () => {
+          const res = await fetch("http://localhost:5000/api/listings");
+          const data = await res.json();
+          return { listings: data };
+        },
       },
     ],
   },

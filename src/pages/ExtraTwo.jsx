@@ -4,7 +4,7 @@ const ExtraTwo = () => {
 
     const heroes = [
     {
-      name: "Sarah Ahmed",
+      name: "Sarjis Alam",
       role: "Dog Rescuer",
       image: "https://i.pravatar.cc/300?img=1",
       pets: 15,
@@ -12,7 +12,7 @@ const ExtraTwo = () => {
       location: "Dhaka"
     },
     {
-      name: "Karim Hassan",
+      name: "Hasnat Abdulla",
       role: "Cat Foster Parent",
       image: "https://i.pravatar.cc/300?img=13",
       pets: 12,
@@ -20,7 +20,7 @@ const ExtraTwo = () => {
       location: "Chittagong"
     },
     {
-      name: "Nadia Rahman",
+      name: "Rumin Farhana",
       role: "Pet Care Volunteer",
       image: "https://i.pravatar.cc/300?img=5",
       pets: 20,
@@ -28,7 +28,7 @@ const ExtraTwo = () => {
       location: "Sylhet"
     },
     {
-      name: "Imran Khan",
+      name: "Fokrul Islam",
       role: "Animal Rights Activist",
       image: "https://i.pravatar.cc/300?img=12",
       pets: 18,
