@@ -4,8 +4,11 @@ import RecentLists from "./RecentLists";
 import ExtraOne from "./ExtraOne";
 import ExtraTwo from "./ExtraTwo";
 import usePageTitle from "../components/usePageTitle";
+import { useEffect, useState } from "react";
+import Loader from "../components/Loader";
 const Home = () => {
   usePageTitle("Home | PawMart");
+  const [loading, setLoading] = useState(true);
   const categories = [
     { name: "Pets (Adoption)", icon: "🐶", color: "bg-orange-100" },
     { name: "Pet Food", icon: "🍖", color: "bg-green-100" },
@@ -14,6 +17,16 @@ const Home = () => {
   ];
   
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 800); 
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4">

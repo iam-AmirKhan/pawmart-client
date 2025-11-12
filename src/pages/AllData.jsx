@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { MapPin, Tag, Search } from "lucide-react";
@@ -7,10 +7,27 @@ import usePageTitle from "../components/usePageTitle";
 import Loader from "../components/Loader";
 
 const AllData = () => {
-   usePageTitle("pets & supplies | PawMart");
-  const { listings } = useLoaderData();
+  usePageTitle("pets & supplies | PawMart");
+
+  const { listings: initialListings } = useLoaderData();
+  const [listings, setListings] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+
+ 
+  useEffect(() => {
+    if (initialListings) {
+
+      const timer = setTimeout(() => {
+        setListings(initialListings);
+        setLoading(false);
+      }, 300);
+      return () => clearTimeout(timer);
+    } else {
+      setLoading(false);
+    }
+  }, [initialListings]);
 
   // Filter logic
   const filteredListings = listings?.filter((listing) => {
@@ -24,23 +41,26 @@ const AllData = () => {
 
   const categories = ["All", "Pets", "Food", "Accessories", "Care Products"];
 
-
   const getCategoryCount = (category) => {
     if (category === "All") return listings?.length || 0;
     return listings?.filter((l) => l.category === category).length || 0;
   };
 
+  // Show loader 
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
-    
+  
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-10"
       >
         <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-3">
-          Pets & Supplies 🐾
+          Pets & Supplies
         </h1>
         <p className="text-gray-600 text-lg">
           Browse all available pets for adoption and pet supplies
@@ -49,7 +69,7 @@ const AllData = () => {
 
       {/* Search & Filter Section */}
       <div className="mb-8 space-y-4">
-     
+
         <div className="relative max-w-xl mx-auto">
           <Search
             className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
@@ -87,14 +107,14 @@ const AllData = () => {
         <p className="text-gray-600">
           Showing{" "}
           <span className="font-bold text-orange-500">
-            {filteredListings?.length}
+            {filteredListings?.length || 0}
           </span>{" "}
           listings
           {selectedCategory !== "All" && ` in ${selectedCategory}`}
         </p>
       </div>
 
-      {/* Listings Grid - 3 columns */}
+      {/* Listings Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
         {filteredListings?.map((listing, index) => (
           <motion.div
@@ -104,7 +124,7 @@ const AllData = () => {
             transition={{ duration: 0.3, delay: index * 0.03 }}
             className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
           >
-           
+            {/* Image */}
             <div className="relative h-56 overflow-hidden">
               <img
                 src={listing.image}
@@ -116,7 +136,7 @@ const AllData = () => {
               </div>
             </div>
 
-          
+            {/* Content */}
             <div className="p-5">
               <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-1">
                 {listing.name}
@@ -156,7 +176,7 @@ const AllData = () => {
           animate={{ opacity: 1 }}
           className="text-center py-20"
         >
-          <div className="text-6xl mb-4">😢</div>
+          <div className="text-6xl mb-4">No listings found</div>
           <h3 className="text-2xl font-bold text-gray-700 mb-2">
             No listings found
           </h3>

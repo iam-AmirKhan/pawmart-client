@@ -39,6 +39,7 @@ const router = createBrowserRouter([
           const res = await fetch("http://localhost:5000/api/listings");
           const data = await res.json();
           return { listings: data };
+      
         },
       },
       {

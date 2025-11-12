@@ -5,7 +5,7 @@ import Loader from "../components/Loader";
 
 const AddListing = () => {
  usePageTitle("add-listing | PawMart");
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
 
   // user info
   const user = {
@@ -51,7 +51,9 @@ const AddListing = () => {
     }
   };
 
-  if (loading) return <Loader />;
+ if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg my-10">
