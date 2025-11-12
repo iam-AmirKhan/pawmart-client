@@ -9,6 +9,7 @@ import AddListing from "../pages/AddListing";
 import ProtectedRoute from "../components/ProtectedRoute";
 import MyListings from "../pages/MyListings";
 import MyOrders from "../pages/MyOrders";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "*",
+    element: <ErrorPage />,
   },
 ]);
 
