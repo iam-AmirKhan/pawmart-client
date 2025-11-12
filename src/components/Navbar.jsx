@@ -8,21 +8,58 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate(); 
 
-  const navLinks = (
-    <>
-      <NavLink to="/" className="hover:text-orange-500 transition">Home</NavLink>
-      <NavLink to="/pets-supplies" className="hover:text-orange-500 transition">Pets & Supplies</NavLink>
+ const navLinks = (
+  <>
+    <NavLink
+      to="/"
+      className={({ isActive }) =>
+        `transition ${isActive ? "text-orange-500 font-semibold" : "text-gray-700 hover:text-orange-500"}`
+      }
+    >
+      Home
+    </NavLink>
 
-     
-      {user && (
-        <>
-          <NavLink to="/add-listing" className="hover:text-orange-500 transition">Add Listing</NavLink>
-          <NavLink to="/my-listings" className="hover:text-orange-500 transition">My Listings</NavLink>
-          <NavLink to="/my-orders" className="hover:text-orange-500 transition">My Orders</NavLink>
-        </>
-      )}
-    </>
-  );
+    <NavLink
+      to="/pets-supplies"
+      className={({ isActive }) =>
+        `transition ${isActive ? "text-orange-500 font-semibold" : "text-gray-700 hover:text-orange-500"}`
+      }
+    >
+      Pets & Supplies
+    </NavLink>
+
+    {user && (
+      <>
+        <NavLink
+          to="/add-listing"
+          className={({ isActive }) =>
+            `transition ${isActive ? "text-orange-500 font-semibold" : "text-gray-700 hover:text-orange-500"}`
+          }
+        >
+          Add Listing
+        </NavLink>
+
+        <NavLink
+          to="/my-listings"
+          className={({ isActive }) =>
+            `transition ${isActive ? "text-orange-500 font-semibold" : "text-gray-700 hover:text-orange-500"}`
+          }
+        >
+          My Listings
+        </NavLink>
+
+        <NavLink
+          to="/my-orders"
+          className={({ isActive }) =>
+            `transition ${isActive ? "text-orange-500 font-semibold" : "text-gray-700 hover:text-orange-500"}`
+          }
+        >
+          My Orders
+        </NavLink>
+      </>
+    )}
+  </>
+);
 
 
   const handleLogout = () => {
