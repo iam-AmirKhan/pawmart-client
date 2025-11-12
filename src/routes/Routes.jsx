@@ -39,12 +39,15 @@ const router = createBrowserRouter([
           const res = await fetch("http://localhost:5000/api/listings");
           const data = await res.json();
           return { listings: data };
-      
         },
       },
       {
         path: "/listing/:id",
-        element: <DetailsPage></DetailsPage>,
+        element: (
+          <ProtectedRoute>
+            <DetailsPage></DetailsPage>
+          </ProtectedRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/listings/${params.id}`),
       },
