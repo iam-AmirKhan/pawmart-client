@@ -3,9 +3,9 @@ import Banner from "./Banner";
 import RecentLists from "./RecentLists";
 import ExtraOne from "./ExtraOne";
 import ExtraTwo from "./ExtraTwo";
-
+import usePageTitle from "../components/usePageTitle";
 const Home = () => {
-
+  usePageTitle("Home | PawMart");
   const categories = [
     { name: "Pets (Adoption)", icon: "🐶", color: "bg-orange-100" },
     { name: "Pet Food", icon: "🍖", color: "bg-green-100" },

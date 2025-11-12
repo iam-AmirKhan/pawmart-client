@@ -3,8 +3,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { MapPin, Tag, Search } from "lucide-react";
+import usePageTitle from "../components/usePageTitle";
+import Loader from "../components/Loader";
 
 const AllData = () => {
+   usePageTitle("pets & supplies | PawMart");
   const { listings } = useLoaderData();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -26,6 +29,7 @@ const AllData = () => {
     if (category === "All") return listings?.length || 0;
     return listings?.filter((l) => l.category === category).length || 0;
   };
+
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">

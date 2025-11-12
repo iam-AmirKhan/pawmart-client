@@ -4,8 +4,11 @@ import Home from "../pages/Home";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import AllData from "../pages/AllData";
-import { path } from "framer-motion/client";
 import DetailsPage from "../pages/DetailsPage";
+import AddListing from "../pages/AddListing";
+import ProtectedRoute from "../components/ProtectedRoute";
+import MyListings from "../pages/MyListings";
+import MyOrders from "../pages/MyOrders";
 
 const router = createBrowserRouter([
   {
@@ -45,9 +48,31 @@ const router = createBrowserRouter([
           fetch(`http://localhost:5000/listings/${params.id}`),
       },
 
-      {},
+      {
+        path: "/add-listing",
+        element: (
+          <ProtectedRoute>
+            <AddListing></AddListing>
+          </ProtectedRoute>
+        ),
+      },
 
-      {},
+      {
+        path: "/my-listings",
+        element: (
+          <ProtectedRoute>
+            <MyListings />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/my-orders",
+        element: (
+          <ProtectedRoute>
+            <MyOrders></MyOrders>
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
 ]);

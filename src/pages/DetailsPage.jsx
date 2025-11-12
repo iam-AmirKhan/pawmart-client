@@ -1,18 +1,18 @@
 import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
 import toast from "react-hot-toast";
-
+import usePageTitle from "../components/usePageTitle";
 const DetailsPage = () => {
+  usePageTitle("details | PawMart");
   const listing = useLoaderData();
   const [showModal, setShowModal] = useState(false);
 
-  
   const user = {
     displayName: "Amir Khan",
     email: "amir@gmail.com",
   };
 
-  // 🛒 Order Submit
+  // Order Submit
   const handleOrder = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -50,20 +50,17 @@ const DetailsPage = () => {
       toast.error("Server Error!");
     }
     console.log(newOrder);
-
   };
 
   return (
     <div className="max-w-5xl mx-auto my-12 bg-white p-6 md:p-10 rounded-xl shadow-lg">
       <div className="grid md:grid-cols-2 gap-10">
-     
         <img
           src={listing.image}
           alt={listing.name}
           className="w-full h-80 object-cover rounded-xl shadow-md"
         />
 
-      
         <div>
           <h2 className="text-3xl font-bold text-gray-800 mb-2">
             {listing.name}
@@ -90,12 +87,11 @@ const DetailsPage = () => {
             onClick={() => setShowModal(true)}
             className="mt-6 bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600 transition font-semibold"
           >
-             Adopt / Order Now
+            Adopt / Order Now
           </button>
         </div>
       </div>
 
-    
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-xl w-full max-w-md shadow-lg">
