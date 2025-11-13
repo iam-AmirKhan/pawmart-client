@@ -41,7 +41,7 @@ const Register = () => {
         <input name="email" type="email" placeholder="Email" className="input input-bordered w-full" required />
         <input name="password" type="password" placeholder="Password" className="input input-bordered w-full" required />
         <input name="photoURL" type="text" placeholder="Photo URL" className="input input-bordered w-full" />
-        <button className="btn btn-primary w-full">Register</button>
+        <button className="btn btn-primary bg-orange-500 text-white px-4 py-1 rounded-lg hover:bg-orange-600 transition w-full">Register</button>
       </form>
       <p className="text-red-500 text-sm mt-2">{error}</p>
       <div className="mt-4 text-center">

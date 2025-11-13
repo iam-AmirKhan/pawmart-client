@@ -37,7 +37,7 @@ const Login = () => {
       <form onSubmit={handleLogin} className="space-y-3">
         <input name="email" type="email" placeholder="Email" className="input input-bordered w-full" required />
         <input name="password" type="password" placeholder="Password" className="input input-bordered w-full" required />
-        <button className="btn btn-primary w-full">Login</button>
+        <button className="btn btn-primary bg-orange-500 text-white px-4 py-1 rounded-lg hover:bg-orange-600 transition w-full">Login</button>
       </form>
       <div className="mt-4 text-center">
         <button onClick={handleGoogle} className="btn btn-outline w-full">Continue with Google</button>
