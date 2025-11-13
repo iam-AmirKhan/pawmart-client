@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useSearchParams } from "react-router-dom"; // ✅ UPDATED: Added useSearchParams
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -10,15 +10,27 @@ const AllData = () => {
   usePageTitle("pets & supplies | PawMart");
 
   const { listings: initialListings } = useLoaderData();
+  
+  //  Get category from URL
+  const [searchParams] = useSearchParams();
+  const categoryFromUrl = searchParams.get('category');
+  
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  
 
- 
+  const [selectedCategory, setSelectedCategory] = useState(categoryFromUrl || "All");
+
+  // Update category when URL changes
+  useEffect(() => {
+    if (categoryFromUrl) {
+      setSelectedCategory(categoryFromUrl);
+    }
+  }, [categoryFromUrl]);
+
   useEffect(() => {
     if (initialListings) {
-
       const timer = setTimeout(() => {
         setListings(initialListings);
         setLoading(false);
@@ -46,14 +58,12 @@ const AllData = () => {
     return listings?.filter((l) => l.category === category).length || 0;
   };
 
-  // Show loader 
   if (loading) {
     return <Loader />;
   }
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
-  
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -69,7 +79,6 @@ const AllData = () => {
 
       {/* Search & Filter Section */}
       <div className="mb-8 space-y-4">
-
         <div className="relative max-w-xl mx-auto">
           <Search
             className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
@@ -84,7 +93,6 @@ const AllData = () => {
           />
         </div>
 
-        {/* Category Filter Buttons */}
         <div className="flex gap-3 flex-wrap justify-center">
           {categories.map((cat) => (
             <button
@@ -102,7 +110,6 @@ const AllData = () => {
         </div>
       </div>
 
-      {/* Results Count */}
       <div className="mb-6 text-center">
         <p className="text-gray-600">
           Showing{" "}
@@ -124,7 +131,6 @@ const AllData = () => {
             transition={{ duration: 0.3, delay: index * 0.03 }}
             className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
           >
-            {/* Image */}
             <div className="relative h-56 overflow-hidden">
               <img
                 src={listing.image}
@@ -136,7 +142,6 @@ const AllData = () => {
               </div>
             </div>
 
-            {/* Content */}
             <div className="p-5">
               <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-1">
                 {listing.name}
@@ -176,7 +181,7 @@ const AllData = () => {
           animate={{ opacity: 1 }}
           className="text-center py-20"
         >
-          <div className="text-6xl mb-4">No listings found</div>
+          <div className="text-6xl mb-4">🔍</div>
           <h3 className="text-2xl font-bold text-gray-700 mb-2">
             No listings found
           </h3>

@@ -6,7 +6,7 @@ const RecentLists = () => {
     return (
     <div className="max-w-7xl mx-auto px-6 py-12">
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-10">
-        🐶 Latest Listings
+         Latest Listings
       </h1>
 
       {recentListings.length === 0 ? (
@@ -41,7 +41,7 @@ const RecentLists = () => {
                 <p className="text-lg font-semibold text-green-600">
                   {listing.price
                     ? `$${listing.price}`
-                    : "Free for Adoption 🐾"}
+                    : "Free for Adoption "}
                 </p>
 
                 <Link

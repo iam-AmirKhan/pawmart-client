@@ -6,21 +6,51 @@ import ExtraTwo from "./ExtraTwo";
 import usePageTitle from "../components/usePageTitle";
 import { useEffect, useState } from "react";
 import Loader from "../components/Loader";
+
+import { useNavigate } from "react-router-dom";
+
 const Home = () => {
   usePageTitle("Home | PawMart");
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
+
+  //  handleCategoryClick function
+  const handleCategoryClick = (categoryName) => {
+    navigate(`/pets-supplies?category=${categoryName}`);
+  };
+
   const categories = [
-    { name: "Pets (Adoption)", icon: "🐶", color: "bg-orange-100" },
-    { name: "Pet Food", icon: "🍖", color: "bg-green-100" },
-    { name: "Accessories", icon: "🧸", color: "bg-blue-100" },
-    { name: "Care Products", icon: "💊", color: "bg-pink-100" },
+    {
+      name: "Pets (Adoption)",
+      icon: "🐶",
+      color: "bg-orange-100",
+      categoryName: "Pets",
+    },
+    {
+      name: "Pet Food",
+      icon: "🍖",
+      color: "bg-green-100",
+      categoryName: "Food",
+    },
+    {
+      name: "Accessories",
+      icon: "🧸",
+      color: "bg-blue-100",
+      categoryName: "Accessories",
+    },
+    {
+      name: "Care Products",
+      icon: "💊",
+      color: "bg-pink-100",
+      categoryName: "Care Products",
+    },
   ];
-  
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 800); 
+    }, 800);
     return () => clearTimeout(timer);
   }, []);
 
@@ -30,12 +60,9 @@ const Home = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4">
-
- <Banner></Banner>
-
+      <Banner></Banner>
 
       {/* ========== Category Section ========== */}
-      
       <section className="mt-16">
         <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
           Explore by Category
@@ -45,6 +72,8 @@ const Home = () => {
             <motion.div
               key={index}
               whileHover={{ scale: 1.05 }}
+              //  Add onClick handler
+              onClick={() => handleCategoryClick(cat.categoryName)}
               className={`p-6 rounded-xl shadow-md ${cat.color} text-center cursor-pointer transition`}
             >
               <p className="text-5xl">{cat.icon}</p>
@@ -53,14 +82,11 @@ const Home = () => {
           ))}
         </div>
       </section>
-     
-<RecentLists></RecentLists>
-<ExtraOne></ExtraOne>
-<ExtraTwo></ExtraTwo>
 
+      <RecentLists></RecentLists>
+      <ExtraOne></ExtraOne>
+      <ExtraTwo></ExtraTwo>
     </div>
-
-    
   );
 };
 
