@@ -4,7 +4,7 @@ import usePageTitle from "../components/usePageTitle";
 import Loader from "../components/Loader";
 
 const AddListing = () => {
- usePageTitle("add-listing | PawMart");
+  usePageTitle("add-listing | PawMart");
   const [loading, setLoading] = useState(false);
 
   // user info
@@ -30,11 +30,14 @@ const AddListing = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/api/listings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(listingData),
-      });
+      const res = await fetch(
+        "https://pawmart-server-eight.vercel.app/api/listings",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(listingData),
+        }
+      );
 
       const data = await res.json();
 
@@ -51,7 +54,7 @@ const AddListing = () => {
     }
   };
 
- if (loading) {
+  if (loading) {
     return <Loader />;
   }
 

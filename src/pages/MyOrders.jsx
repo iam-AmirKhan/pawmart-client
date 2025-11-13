@@ -16,7 +16,7 @@ const MyOrders = () => {
     const fetchOrders = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/my-orders?email=${user.email}`
+          `https://pawmart-server-eight.vercel.app/api/my-orders?email=${user.email}`
         );
         if (!res.ok) throw new Error("Network error");
         const data = await res.json();

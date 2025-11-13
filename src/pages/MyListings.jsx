@@ -18,7 +18,7 @@ const MyListings = () => {
     const fetchData = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/my-listings?email=${user.email}`
+          `https://pawmart-server-eight.vercel.app/api/my-listings?email=${user.email}`
         );
         const data = await res.json();
         setListings(data);
@@ -37,9 +37,12 @@ const MyListings = () => {
     if (!confirmDelete) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/listings/${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://pawmart-server-eight.vercel.app/api/listings/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       const data = await res.json();
 
       if (data.deletedCount > 0) {

@@ -20,7 +20,9 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
         loader: async () => {
-          const res = await fetch("http://localhost:5000/api/listings/recent");
+          const res = await fetch(
+            "https://pawmart-server-eight.vercel.app/api/listings/recent"
+          );
           const data = await res.json();
           return { recentListings: data };
         },
@@ -37,7 +39,9 @@ const router = createBrowserRouter([
         path: "/pets-supplies",
         element: <AllData></AllData>,
         loader: async () => {
-          const res = await fetch("http://localhost:5000/api/listings");
+          const res = await fetch(
+            "https://pawmart-server-eight.vercel.app/api/listings"
+          );
           const data = await res.json();
           return { listings: data };
         },
@@ -50,7 +54,9 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/listings/${params.id}`),
+          fetch(
+            `https://pawmart-server-eight.vercel.app/listings/${params.id}`
+          ),
       },
 
       {

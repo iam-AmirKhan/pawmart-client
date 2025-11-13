@@ -31,11 +31,14 @@ const DetailsPage = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/orders", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newOrder),
-      });
+      const res = await fetch(
+        "https://pawmart-server-eight.vercel.app/orders",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newOrder),
+        }
+      );
 
       const data = await res.json();
 
